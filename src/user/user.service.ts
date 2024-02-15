@@ -17,12 +17,12 @@ export class UserService {
 
   async findAll() {
     // return this.usersRepository.find();
-    const data = await this.supabaseService.getTable('your_table_name');
+    const data = await this.supabaseService.getTable('user');
     return data;
   }
 
   async findOne(id: string) {
-    return await this.supabaseService.getOneFromTable('your_table_name', id);
+    return await this.supabaseService.getIdFromTable('user', id);
   }
 
   // Add methods for creating and updating users as needed

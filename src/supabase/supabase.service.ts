@@ -15,7 +15,7 @@ export class SupabaseService {
     return data;
   }
 
-  async getOneFromTable(tableName: string, id: string) {
+  async getIdFromTable(tableName: string, id: string) {
     const { data, error } = await this.supabase
       .from(tableName)
       .select()

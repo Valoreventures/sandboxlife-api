@@ -9,20 +9,21 @@ import { SupabaseService } from '../supabase/supabase.service';
 
 @Injectable()
 export class UserService {
-  constructor(
-    // @InjectRepository(User)
-    // private usersRepository: Repository<User>,
-    private readonly supabaseService: SupabaseService,
-  ) {}
+  // constructor(
+  //   // @InjectRepository(User)
+  //   // private usersRepository: Repository<User>,
+  //   private readonly supabaseService: SupabaseService,
+  // ) {}
 
   async findAll() {
     // return this.usersRepository.find();
-    const data = await this.supabaseService.getTable('user');
-    return data;
+    // const data = await this.supabaseService.getTable('users');
+    return [];
   }
 
   async findOne(id: string) {
-    return await this.supabaseService.getIdFromTable('user', id);
+    // return await this.supabaseService.getIdFromTable('users', id);
+    return []
   }
 
   // Add methods for creating and updating users as needed

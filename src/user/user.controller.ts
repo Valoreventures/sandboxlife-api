@@ -14,22 +14,22 @@ export class UserController {
   }
 
   @Get(':id')
-  getUser(@Param('id') id: string): Promise<User> {
+  getUser(@Param('id') id: string) {
     return this.userService.findOne(id);
   }
 
-  @Post()
-  createUser(@Body() userData: User): Promise<User> {
-    // Implement the logic to create a new user
-  }
+  // @Post()
+  // createUser(@Body() userData: User) {
+  //   // Implement the logic to create a new user
+  // }
 
-  @Put(':id')
-  updateUser(@Param('id') id: string, @Body() userData: User): Promise<User> {
-    // Implement the logic to update an existing user
-  }
+  // @Put(':id')
+  // updateUser(@Param('id') id: string, @Body() userData: User) {
+  //   // Implement the logic to update an existing user
+  // }
 
-  @Patch(':id')
-  partialUpdateUser(@Param('id') id: string, @Body() userData: Partial<User>): Promise<User> {
-    // Implement the logic for partial updates
-  }
+  // @Patch(':id')
+  // partialUpdateUser(@Param('id') id: string, @Body() userData: Partial<User>) {
+  //   // Implement the logic for partial updates
+  // }
 }

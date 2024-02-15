@@ -12,8 +12,8 @@ import { SupabaseService } from './supabase.service';
     {
       provide: 'SupabaseClient',
       useFactory: (configService: ConfigService) => {
-        const supabaseUrl = configService.get<string>('SUPABASE_URL');
-        const supabaseKey = configService.get<string>('SUPABASE_KEY');
+        const supabaseUrl = configService.get<string>(process.env.SUPABASE_URL);
+        const supabaseKey = configService.get<string>(process.env.SUPABASE_KEY);
         return createClient(supabaseUrl, supabaseKey);
       },
       inject: [ConfigService],

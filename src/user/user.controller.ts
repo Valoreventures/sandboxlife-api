@@ -1,6 +1,6 @@
 // src/user/user.controller.ts
 
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 
@@ -18,10 +18,20 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
-  // @Post()
-  // createUser(@Body() userData: User): Promise<User> {
-  //   // Implement the logic to create a new user
-  // }
+  @Post()
+  createUser(@Body() userData: User): Promise<User> {
+    // Implement the logic to create a new user
+    return this.userService.registerUser(userData);
+  }
+
+  @Post('/login')
+  loginUser(
+    @Body() userData: User,
+    @Body() password: string,
+  ): Promise<any[] | { login: string }> {
+    // Implement the logic to create a new user
+    return this.userService.loginUser(userData, 'xyz1');
+  }
 
   // @Put(':id')
   // updateUser(@Param('id') id: string, @Body() userData: User): Promise<User> {

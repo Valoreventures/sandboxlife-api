@@ -2,6 +2,9 @@
 
 import { Injectable } from '@nestjs/common';
 import { SupabaseService } from '../supabase/supabase.service';
+import { User } from './user.entity';
+// import bcrypt from 'bcrypt';
+const crypto = require('crypto');
 // import { InjectRepository } from '@nestjs/typeorm';
 // import { Repository } from 'typeorm';
 // import { User } from './user.entity';
@@ -23,6 +26,30 @@ export class UserService {
 
   async findOne(id: string) {
     return await this.supabaseService.getIdFromTable('users', id);
+  }
+
+  async registerUser(user: User) {
+    // const salt = crypto.randomBytes(16).toString('hex');
+    // // Hashing user's salt and password with 1000 iterations,
+    // const hash = crypto
+    //   .pbkdf2Sync(user.password_hash, salt, 1000, 64, `sha512`)
+    //   .toString(`hex`);
+    // user.password_hash = hash;
+    return await this.supabaseService.insertRowIntoTable('users', user);
+  }
+
+  async loginUser(user: User, password: string) {
+    // const salt = crypto.randomBytes(16).toString('hex');
+    // // Hashing user's salt and password with 1000 iterations,
+    // const hash = crypto
+    //   .pbkdf2Sync(user.password_hash, salt, 1000, 64, `sha512`)
+    //   .toString(`hex`);
+    // user.password_hash = hash;
+    return await this.supabaseService.verifyLoginOfUser(
+      'users',
+      user,
+      password,
+    );
   }
 
   // Add methods for creating and updating users as needed

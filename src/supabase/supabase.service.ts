@@ -30,7 +30,8 @@ export class SupabaseService {
     const { data, error } = await this.supabase
       .from(tableName)
       .select()
-      .eq('username', username);
+      .eq('username', username)
+      .limit(1);
 
     if (error) throw new Error(error.message);
     return data;
@@ -43,11 +44,16 @@ export class SupabaseService {
     return data;
   }
 
-  async verifyLoginOfUser(tableName: string, user: User, password: string) {
-    const data = await this.getUsernameFromTable(tableName, user.username);
-    if (user.password_hash === password) {
-      return data[0];
-    }
+  async verifyLoginOfUser(
+    tableName: string,
+    username: string,
+    password: string,
+  ) {
+    const data = await this.getUsernameFromTable(tableName, username);
+    console.log(data, 'data');
+    // if (data === password) {
+    //   return data[0];
+    // }
     return { login: 'failed' };
   }
 

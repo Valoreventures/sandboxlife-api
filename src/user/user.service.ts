@@ -38,7 +38,7 @@ export class UserService {
     return await this.supabaseService.insertRowIntoTable('users', user);
   }
 
-  async loginUser(user: User, password: string) {
+  async loginUser(username: string, password: string) {
     // const salt = crypto.randomBytes(16).toString('hex');
     // // Hashing user's salt and password with 1000 iterations,
     // const hash = crypto
@@ -47,7 +47,7 @@ export class UserService {
     // user.password_hash = hash;
     return await this.supabaseService.verifyLoginOfUser(
       'users',
-      user,
+      username,
       password,
     );
   }

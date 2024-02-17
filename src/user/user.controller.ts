@@ -26,11 +26,11 @@ export class UserController {
 
   @Post('/login')
   loginUser(
-    @Body() userData: User,
-    @Body() password: string,
+    @Body() userData: { userData: User; password: string },
   ): Promise<any[] | { login: string }> {
     // Implement the logic to create a new user
-    return this.userService.loginUser(userData, 'xyz1');
+    console.log(userData, 'log');
+    return this.userService.loginUser(userData.userData, userData.password);
   }
 
   // @Put(':id')

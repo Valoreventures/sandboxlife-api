@@ -38,6 +38,16 @@ export class UserService {
     return await this.supabaseService.insertRowIntoTable('users', user);
   }
 
+  async updateUser(user: User, emailId: string) {
+    // const salt = crypto.randomBytes(16).toString('hex');
+    // // Hashing user's salt and password with 1000 iterations,
+    // const hash = crypto
+    //   .pbkdf2Sync(user.password_hash, salt, 1000, 64, `sha512`)
+    //   .toString(`hex`);
+    // user.password_hash = hash;
+    return await this.supabaseService.updateRowInTable('users', user, emailId);
+  }
+
   async loginUser(username: string, password: string) {
     // const salt = crypto.randomBytes(16).toString('hex');
     // // Hashing user's salt and password with 1000 iterations,

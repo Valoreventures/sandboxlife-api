@@ -1,6 +1,6 @@
 // src/user/user.controller.ts
 
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { UserService } from './user.service';
 import { User } from './user.entity';
 
@@ -31,10 +31,11 @@ export class UserController {
     return this.userService.loginUser(userData.email, userData.password_hash);
   }
 
-  // @Put(':id')
-  // updateUser(@Param('id') id: string, @Body() userData: User): Promise<User> {
-  //   // Implement the logic to update an existing user
-  // }
+  @Put(':email_id')
+  updateUser(@Param('email_id') email: string, @Body() userData: User) {
+    return this.userService.updateUser(userData, email);
+    // Implement the logic to update an existing user
+  }
 
   // @Patch(':id')
   // partialUpdateUser(@Param('id') id: string, @Body() userData: Partial<User>): Promise<User> {

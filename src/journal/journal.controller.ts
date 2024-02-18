@@ -4,8 +4,8 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { JournalService } from './journal.service';
 import { Journal } from './journal.entity';
 
-@Controller('users')
-export class UserController {
+@Controller('journal_entries')
+export class JournalController {
   constructor(private readonly journalService: JournalService) {}
 
   @Get()
@@ -15,7 +15,8 @@ export class UserController {
 
   @Get(':id')
   getAllJournalEntry(@Param('id') id: string): Promise<Journal> {
-    return this.journalService.findOne(id);
+    const data = this.journalService.findOne(id);
+    return data[0];
   }
 
   @Post()

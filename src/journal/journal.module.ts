@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { JournalService } from './journal.service';
 import { JournalController } from './journal.controller';
 import { SupabaseModule } from 'src/supabase/supabase.module';
@@ -10,4 +9,4 @@ import { SupabaseModule } from 'src/supabase/supabase.module';
   controllers: [JournalController],
   exports: [JournalService],
 })
-export class UserModule {}
+export class JournalModule {}

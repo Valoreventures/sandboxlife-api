@@ -7,6 +7,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { getEnvPath } from './common/helper/env.helper';
 import { configService } from './common/config/config.service';
+import { Journal } from './journal/journal.entity';
+import { JournalModule } from './journal/journal.module';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
 
@@ -15,7 +17,8 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs`);
     ConfigModule.forRoot({ envFilePath, isGlobal: true }),
     TypeOrmModule.forRoot(configService.getTypeOrmConfig()),
     UserModule,
-    TypeOrmModule.forFeature([User]),
+    JournalModule,
+    TypeOrmModule.forFeature([User, Journal]),
   ],
   controllers: [AppController],
   providers: [AppService],

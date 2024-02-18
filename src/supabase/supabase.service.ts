@@ -26,11 +26,11 @@ export class SupabaseService {
     return data;
   }
 
-  async getUsernameFromTable(tableName: string, username: string) {
+  async getEmailDetailsFromTable(tableName: string, email: string) {
     const { data, error } = await this.supabase
       .from(tableName)
       .select()
-      .eq('username', username)
+      .eq('email', email)
       .limit(1);
 
     if (error) throw new Error(error.message);
@@ -44,16 +44,12 @@ export class SupabaseService {
     return data;
   }
 
-  async verifyLoginOfUser(
-    tableName: string,
-    username: string,
-    password: string,
-  ) {
-    const data = await this.getUsernameFromTable(tableName, username);
-    console.log(data, 'data');
-    // if (data === password) {
-    //   return data[0];
-    // }
+  async verifyLoginOfUser(tableName: string, email: string, password: string) {
+    const [data] = await this.getEmailDetailsFromTable(tableName, email);
+    console.log(data.password_hash, 'data');
+    if (data.password_hash === password) {
+      return data;
+    }
     return { login: 'failed' };
   }
 

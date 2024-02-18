@@ -39,17 +39,22 @@ export class SupabaseService {
     return data;
   }
 
-  async insertRowIntoTable(tableName: string, user: User) {
-    const { data, error } = await this.supabase.from(tableName).insert(user);
+  async insertRowIntoTable(tableName: string, object: any) {
+    const { data, error } = await this.supabase.from(tableName).insert(object);
 
     if (error) throw new Error(error.message);
     return data;
   }
 
-  async updateRowInTable(tableName: string, user: User, userId: string) {
+  async updateRowInTable(
+    tableName: string,
+    object: any,
+    whereKey: string,
+    userId: string,
+  ) {
     const [data] = await this.getIdFromTable(tableName, userId);
     if (data) {
-      await this.supabase.from(tableName).update(user).eq('user_id', userId);
+      await this.supabase.from(tableName).update(object).eq(whereKey, userId);
       const updatedData = this.getIdFromTable(tableName, userId);
       return updatedData;
     }

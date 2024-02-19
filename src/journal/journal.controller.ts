@@ -4,7 +4,7 @@ import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { JournalService } from './journal.service';
 import { Journal } from './journal.entity';
 
-@Controller('journal_entries')
+@Controller('journal')
 export class JournalController {
   constructor(private readonly journalService: JournalService) {}
 

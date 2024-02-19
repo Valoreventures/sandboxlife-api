@@ -14,9 +14,16 @@ export class JournalController {
   }
 
   @Get(':id')
-  getAllJournalEntry(@Param('id') id: string): Promise<Journal> {
+  getJournalEntry(@Param('id') id: string): Promise<Journal> {
     const data = this.journalService.findOne(id);
     return data[0];
+  }
+
+  @Get(':user_id')
+  getJournalEntriesOfUser(
+    @Param('user_id') user_id: string,
+  ): Promise<Journal[]> {
+    return this.journalService.findUserJournals(user_id);
   }
 
   @Post()

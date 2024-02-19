@@ -28,6 +28,16 @@ export class SupabaseService {
     return data;
   }
 
+  async getRowsFromTable(tableName: string, key: string, id: string) {
+    const { data, error } = await this.supabase
+      .from(tableName)
+      .select()
+      .eq(key, id);
+
+    if (error) throw new Error(error.message);
+    return data;
+  }
+
   async getEmailDetailsFromTable(tableName: string, email: string) {
     const { data, error } = await this.supabase
       .from(tableName)

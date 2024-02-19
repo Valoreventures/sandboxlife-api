@@ -17,6 +17,14 @@ export class JournalService {
     return await this.supabaseService.getIdFromTable('journal_entries', id);
   }
 
+  async findUserJournals(user_id: string) {
+    return await this.supabaseService.getRowsFromTable(
+      'journal_entries',
+      'user_id',
+      user_id,
+    );
+  }
+
   async addJournal(journal: Journal) {
     return await this.supabaseService.insertRowIntoTable(
       'journal_entries',

@@ -28,7 +28,6 @@ export class JournalController {
 
   @Post()
   addJournal(@Body() journalData: Journal): Promise<Journal> {
-    // Implement the logic to create a new user
     return this.journalService.addJournal(journalData);
   }
 
@@ -38,7 +37,6 @@ export class JournalController {
     @Body() journalData: Journal,
   ) {
     return this.journalService.updateJournal(journalData, entryId);
-    // Implement the logic to update an existing user
   }
 
   // @Patch(':id')

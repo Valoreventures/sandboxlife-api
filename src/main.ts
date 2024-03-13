@@ -6,7 +6,7 @@ async function bootstrap() {
   app.enableCors({
     origin: [
       'http://localhost:3000',
-      'https://sandboxlife-alpha-deploy-2.vercel.app/',
+      'https://sandboxlife-alpha-deploy-2.vercel.app',
     ],
     methods: ['GET', 'POST'],
     credentials: true,
